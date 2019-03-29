@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"fmt"
 	"net/http"
 )
 
@@ -14,17 +13,8 @@ type Client struct {
 }
 
 func (c *Client) Ping(m map[string]interface{}) error {
-	fmt.Println("making request to ", c.URL)
-	fmt.Printf("context 01: %+v\n", c.context)
-
 	c.context = context.Background()
-
-	fmt.Printf("context 02: %+v\n", c.context)
-
 	context.WithValue(c.context, "foo", "bar")
-
-	fmt.Printf("context 03: %+v\n", c.context)
-
 	return c.DoRequest(m)
 }
 
